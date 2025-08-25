@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - Leal Verse</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <img src="../assets/imagens/logo-white.png" alt="Leal Verse">
+        <h2>Painel Admin</h2>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="active"><a href="#" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+          <li><a href="#" data-page="carousel"><i class="fas fa-images"></i> Carrossel</a></li>
+          <li><a href="#" data-page="products"><i class="fas fa-box"></i> Produtos</a></li>
+          <li><a href="#" data-page="blog"><i class="fas fa-blog"></i> Blog</a></li>
+          <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Header -->
+      <div class="admin-header">
+        <div class="admin-title">
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="admin-user">
+          <button class="theme-toggle" id="themeToggle" title="Alternar Tema">
+            <i class="fas fa-moon"></i>
+          </button>
+          <span>Admin</span>
+          <i class="fas fa-user-circle"></i>
+        </div>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div id="dashboardPage" class="admin-page active">
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-images"></i>
+            </div>
+            <div class="stat-info">
+              <h3 id="carouselCount">0</h3>
+              <p>Itens no Carrossel</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-box"></i>
+            </div>
+            <div class="stat-info">
+              <h3 id="productsCount">0</h3>
+              <p>Produtos</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-blog"></i>
+            </div>
+            <div class="stat-info">
+              <h3 id="blogCount">0</h3>
+              <p>Posts no Blog</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Atualizações Recentes -->
+        <div class="recent-updates">
+          <h3><i class="fas fa-clock"></i> Atualizações Recentes</h3>
+          <div class="updates-list" id="recentUpdates">
+            <!-- As atualizações serão carregadas aqui via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Management -->
+      <div id="carouselPage" class="admin-page">
+        <div class="page-header">
+          <h2>Gerenciar Carrossel</h2>
+          <button class="btn btn-primary" id="addCarouselBtn">
+            <i class="fas fa-plus"></i> Adicionar Item
+          </button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Imagem</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Link</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="carouselTableBody">
+              <!-- Os itens do carrossel serão inseridos aqui via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Products Management -->
+      <div id="productsPage" class="admin-page">
+        <div class="page-header">
+          <h2>Gerenciar Produtos</h2>
+          <button class="btn btn-primary" id="addProductBtn">
+            <i class="fas fa-plus"></i> Adicionar Produto
+          </button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Destaque</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <!-- Os produtos serão inseridos aqui via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Blog Management -->
+      <div id="blogPage" class="admin-page">
+        <div class="page-header">
+          <h2>Gerenciar Blog</h2>
+          <button class="btn btn-primary" id="addBlogBtn">
+            <i class="fas fa-plus"></i> Adicionar Post
+          </button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Imagem</th>
+                <th>Título</th>
+                <th>Resumo</th>
+                <th>Autor</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="blogTableBody">
+              <!-- Os posts do blog serão inseridos aqui via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Adicionar/Editar Item -->
+  <div id="itemModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Adicionar Item</h3>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="itemForm">
+          <input type="hidden" id="itemId">
+          <input type="hidden" id="itemType">
+          
+          <!-- Campos dinâmicos serão inseridos aqui via JavaScript -->
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmação de Exclusão -->
+  <div id="confirmModal" class="modal">
+    <div class="modal-content confirm-modal">
+      <div class="modal-header">
+        <h3>Confirmar Exclusão</h3>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza de que deseja excluir este item? Esta ação não pode ser desfeita.</p>
+        <div class="modal-actions">
+          <button class="btn btn-outline" id="cancelDeleteBtn">Cancelar</button>
+          <button class="btn btn-danger" id="confirmDeleteBtn">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/admin.js"></script>
+</body>
+</html>

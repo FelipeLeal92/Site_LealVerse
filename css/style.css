@@ -1,0 +1,285 @@
+/* Variáveis CSS com as cores da marca LealVerse */
+:root {
+  /* Cores Primárias */
+  --primary-dark: #0B1A2C;      /* Azul marinho */
+  --primary-medium: #197BFF;     /* Azul médio */
+  
+  /* Cores Secundárias */
+  --secondary-light: #2DA8FF;    /* Azul claro */
+  --secondary-violet: #142E66;   /* Azul violeta */
+  
+  /* Cores Neutras */
+  --neutral-white: #FFFFFF;      /* Branco */
+  --neutral-light: #F2F4F8;      /* Cinza claro para fundos */
+  
+  /* Cores de Texto */
+  --text-dark: #0B1A2C;
+  --text-light: #666666;
+  
+  /* Cores de Fundo */
+  --bg-primary: var(--neutral-white);
+  --bg-secondary: var(--neutral-light);
+  --bg-header: var(--primary-dark);
+  --bg-footer: var(--primary-dark);
+  
+  /* Sombras e Transições */
+  --shadow: 0 5px 15px rgba(11, 26, 44, 0.1);
+  --transition: all 0.3s ease;
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+  --bg-primary: #0B1A2C;
+  --bg-secondary: #1a2a3a;
+  --bg-header: #000000;
+  --bg-footer: #000000;
+  --text-dark: #FFFFFF;
+  --text-light: #E0E0E0;
+  --neutral-light: #1a2a3a;
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Aplicar cores às variáveis existentes */
+:root {
+  --primary-color: var(--primary-medium);
+  --secondary-color: var(--secondary-light);
+  --accent-color: var(--secondary-violet);
+  --text-color: var(--text-dark);
+  --bg-color: var(--bg-primary);
+  --bg-light: var(--bg-secondary);
+}
+
+/* Estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--bg-color);
+  transition: var(--transition);
+}
+
+/* Seções com transições de cor */
+section {
+  padding: 80px 0;
+  transition: var(--transition);
+}
+
+section:nth-child(even) {
+  background-color: var(--bg-light);
+}
+
+section:nth-child(odd) {
+  background-color: var(--bg-color);
+}
+
+/* Header */
+.header {
+  background-color: var(--bg-header);
+  box-shadow: var(--shadow);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-menu ul li a {
+  color: var(--neutral-white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-menu ul li a:hover {
+  color: var(--secondary-color);
+}
+
+.nav-menu ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--secondary-color);
+  transition: var(--transition);
+}
+
+.nav-menu ul li a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-violet) 100%);
+  color: var(--neutral-white);
+  text-align: center;
+  padding: 120px 0 80px;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--neutral-white);
+  width: 80%;
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Botões */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  color: var(--neutral-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--secondary-color);
+  color: var(--neutral-white);
+}
+
+/* Seções */
+.about, .solutions, .products, .blog, .contact {
+  padding: 80px 0;
+  transition: var(--transition);
+}
+
+.about {
+  background-color: var(--bg-color);
+}
+
+.solutions {
+  background-color: var(--bg-light);
+}
+
+.products {
+  background-color: var(--bg-color);
+}
+
+.blog {
+  background-color: var(--bg-light);
+}
+
+.contact {
+  background-color: var(--bg-color);
+}
+
+/* Cards */
+.solution-card, .product-card, .blog-card {
+  background-color: var(--neutral-white);
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  height: 100%;
+}
+
+.solution-card:hover, .product-card:hover, .blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(11, 26, 44, 0.2);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--bg-footer);
+  color: var(--neutral-white);
+  padding: 70px 0 20px;
+}
+
+/* Tema Toggle */
+.theme-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--secondary-color);
+  color: var(--neutral-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  z-index: 999;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background-color: var(--secondary-light);
+  transform: scale(1.1);
+}
